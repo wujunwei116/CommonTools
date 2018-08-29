@@ -58,6 +58,17 @@
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IGuidGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reflection\ConstructorInvoker.cs" />
+    <Compile Include="Reflection\ConstructorInvokerPool.cs" />
+    <Compile Include="Reflection\FastReflectionPool.cs" />
+    <Compile Include="Reflection\FieldAccessor.cs" />
+    <Compile Include="Reflection\FieldAccessorPool.cs" />
+    <Compile Include="Reflection\IFastReflectionPool.cs" />
+    <Compile Include="Reflection\PropertyAccessor.cs" />
+    <Compile Include="Reflection\MethodInvoker.cs" />
+    <Compile Include="Reflection\MethodInvokerPool.cs" />
+    <Compile Include="Reflection\PropertyAccessorPool.cs" />
+    <Compile Include="Reflection\ReflectionPool.cs" />
     <Compile Include="Runtime\Caching\CacheBase.cs" />
     <Compile Include="Runtime\Caching\CacheExtensions.cs" />
     <Compile Include="Runtime\Caching\CacheManagerBase.cs" />
@@ -79,7 +90,6 @@
   <ItemGroup>
     <Folder Include="Events\Bus\" />
     <Folder Include="Log\" />
-    <Folder Include="Reflection\" />
     <Folder Include="Uow\" />
   </ItemGroup>
   <ItemGroup>
