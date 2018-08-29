@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Acon</id>
+    <version>1.0.3</version>
+    <title></title>
+    <authors>junwei.wu</authors>
+    <owners>junwei.wu</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>通用基本功能，为程序应用提供方便。</description>
+    <dependencies>
+      <dependency id="log4net" version="2.0.8" />
+    </dependencies>
+  </metadata>
+</package>

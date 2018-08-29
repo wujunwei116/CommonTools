@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{ED5087D5-7446-4D1C-9923-2FB0ABD8454C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Acon.Dapper</RootNamespace>
+    <AssemblyName>Acon.Dapper</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net40\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DapperDataBaseTypeRegister.cs" />
+    <Compile Include="DapperExtensions\DapperExtensions.cs" />
+    <Compile Include="DapperExtensions\DapperExtensionsConfiguration.cs" />
+    <Compile Include="DapperExtensions\DapperImplementor.cs" />
+    <Compile Include="DapperExtensions\Database.cs" />
+    <Compile Include="DapperExtensions\GetMultiplePredicate.cs" />
+    <Compile Include="DapperExtensions\GetMultipleResult.cs" />
+    <Compile Include="DapperExtensions\Interception\DbInterception.cs" />
+    <Compile Include="DapperExtensions\Interception\IDbCommandInterceptor.cs" />
+    <Compile Include="DapperExtensions\Interception\IDbInterceptor.cs" />
+    <Compile Include="DapperExtensions\Mapper\AutoClassMapper.cs" />
+    <Compile Include="DapperExtensions\Mapper\ClassMapper.cs" />
+    <Compile Include="DapperExtensions\Mapper\PluralizedAutoClassMapper.cs" />
+    <Compile Include="DapperExtensions\Mapper\PropertyMap.cs" />
+    <Compile Include="DapperExtensions\Predicates.cs" />
+    <Compile Include="DapperExtensions\ReflectionHelper.cs" />
+    <Compile Include="DapperExtensions\Sql\DB2Dialect.cs" />
+    <Compile Include="DapperExtensions\Sql\MySqlDialect.cs" />
+    <Compile Include="DapperExtensions\Sql\OracleDialect.cs" />
+    <Compile Include="DapperExtensions\Sql\PostgreSqlDialect.cs" />
+    <Compile Include="DapperExtensions\Sql\SqlCeDialect.cs" />
+    <Compile Include="DapperExtensions\Sql\SqlDialectBase.cs" />
+    <Compile Include="DapperExtensions\Sql\SqlGenerator.cs" />
+    <Compile Include="DapperExtensions\Sql\SqliteDialect.cs" />
+    <Compile Include="DapperExtensions\Sql\SqlServerDialect.cs" />
+    <Compile Include="Data\DapperActiveTransactionProvider.cs" />
+    <Compile Include="Data\DBSession.cs" />
+    <Compile Include="Expressions\DapperExpressionExtensions.cs" />
+    <Compile Include="Expressions\DapperExpressionVisitor.cs" />
+    <Compile Include="Expressions\Evaluator.cs" />
+    <Compile Include="Extensions\SortingExtensions.cs" />
+    <Compile Include="Filters\Action\CreationAuditDapperActionFilter.cs" />
+    <Compile Include="Filters\Action\DapperActionFilterBase.cs" />
+    <Compile Include="Filters\Action\DapperActionFilterExecuter.cs" />
+    <Compile Include="Filters\Action\DeletionAuditDapperActionFilter.cs" />
+    <Compile Include="Filters\Action\IDapperActionFilter.cs" />
+    <Compile Include="Filters\Action\IDapperActionFilterExecuter.cs" />
+    <Compile Include="Filters\Action\ModificationAuditDapperActionFilter.cs" />
+    <Compile Include="Filters\Query\DapperQueryFilterExecuter.cs" />
+    <Compile Include="Filters\Query\IDapperQueryFilter.cs" />
+    <Compile Include="Filters\Query\IDapperQueryFilterExecuter.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\RepositoryBase.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Acon\Acon.csproj">
+      <Project>{b373ab9c-ad04-49ff-b582-1b962f192aa9}</Project>
+      <Name>Acon</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Build.xml">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
