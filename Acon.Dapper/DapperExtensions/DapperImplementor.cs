@@ -171,8 +171,8 @@ namespace DapperExtensions
                 // defaultValue need for identify type of parameter
                 var defaultValue = entity.GetType().GetProperty(triggerIdentityColumn.PropertyInfo.Name).GetValue(entity, null);
                 dynamicParameters.Add("IdOutParam", direction: ParameterDirection.Output, value: defaultValue);
-               
-                TraceCommand(sql);
+
+                TraceCommand(sql, dynamicParameters);
                 connection.Execute(sql, dynamicParameters, transaction, commandTimeout, CommandType.Text);
 
                 var value = dynamicParameters.Get<object>(SqlGenerator.Configuration.Dialect.ParameterPrefix + "IdOutParam");
@@ -219,7 +219,7 @@ namespace DapperExtensions
             {
                 dynamicParameters.Add(parameter.Key, parameter.Value);
             }
-            TraceCommand(sql);
+            TraceCommand(sql,dynamicParameters);
             return connection.Execute(sql, dynamicParameters, transaction, commandTimeout, CommandType.Text) > 0;
         }
 
@@ -269,7 +269,7 @@ namespace DapperExtensions
             {
                 dynamicParameters.Add(parameter.Key, parameter.Value);
             }
-            TraceCommand(sql);
+            TraceCommand(sql,dynamicParameters);
             return (int)connection.Query(sql, dynamicParameters, transaction, false, commandTimeout, CommandType.Text).Single().Total;
         }
 
@@ -292,7 +292,7 @@ namespace DapperExtensions
             {
                 dynamicParameters.Add(parameter.Key, parameter.Value);
             }
-            TraceCommand(sql);
+            TraceCommand(sql, dynamicParameters);
             return connection.Query<T>(sql, dynamicParameters, transaction, buffered, commandTimeout, CommandType.Text);
         }
 
@@ -305,7 +305,7 @@ namespace DapperExtensions
             {
                 dynamicParameters.Add(parameter.Key, parameter.Value);
             }
-            TraceCommand(sql);
+            TraceCommand(sql, dynamicParameters);
             return connection.Query<T>(sql, dynamicParameters, transaction, buffered, commandTimeout, CommandType.Text);
         }
 
@@ -318,7 +318,7 @@ namespace DapperExtensions
             {
                 dynamicParameters.Add(parameter.Key, parameter.Value);
             }
-            TraceCommand(sql);
+            TraceCommand(sql, dynamicParameters);
             return connection.Query<T>(sql, dynamicParameters, transaction, buffered, commandTimeout, CommandType.Text);
         }
 
@@ -331,7 +331,7 @@ namespace DapperExtensions
             {
                 dynamicParameters.Add(parameter.Key, parameter.Value);
             }
-            TraceCommand(sql);
+            TraceCommand(sql, dynamicParameters);
             return connection.Execute(sql, dynamicParameters, transaction, commandTimeout, CommandType.Text) > 0;
         }
 
@@ -495,6 +495,29 @@ namespace DapperExtensions
                     (interceptor as IDbCommandInterceptor).ExecuteCommand(sql);
                 }
             }
+        }
+
+        private void TraceCommand(string sql, DynamicParameters parameters)
+        {
+            var dic = FormateParameters(parameters);
+            foreach (var interceptor in interceptors)
+            {
+                if (interceptor is IDbCommandInterceptor)
+                {
+                    (interceptor as IDbCommandInterceptor).ExecuteCommand(sql, dic);
+                }
+            }
+        }
+
+        private Dictionary<string,object> FormateParameters(DynamicParameters parameters)
+        {
+            Dictionary<string, object> dic = new Dictionary<string, object>();
+            foreach (var parameter in parameters.ParameterNames)
+            {
+                var p = ((SqlMapper.IParameterLookup)parameters)[parameter];
+                dic.Add(parameter, p);
+            }
+            return dic;
         }
 
         

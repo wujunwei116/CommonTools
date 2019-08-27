@@ -30,10 +30,12 @@ namespace Acon.Dapper.Data
 
         public string ProviderName { get; set; }
 
+        public string ConnectionString { get; private set; }
         public DBSession(string providerName, DbConnection connection)
         {
             // TODO: Complete member initialization
             this.ProviderName = providerName;
+            this.ConnectionString = connection.ConnectionString;
             this.Connection = connection;
         }
 
@@ -57,6 +59,7 @@ namespace Acon.Dapper.Data
             if (CurrentTransaction == null) return;
             CurrentTransaction.Rollback();
             CurrentTransaction.Dispose();
+            CurrentTransaction = null;
         }
 
         public static DBSession From(string providerName, string connectionString)

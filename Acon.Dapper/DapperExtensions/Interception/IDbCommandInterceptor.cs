@@ -22,5 +22,7 @@ using System.Text;
    public interface IDbCommandInterceptor :IDbInterceptor
     {
         void ExecuteCommand(string sql);
+
+        void ExecuteCommand(string sql, Dictionary<string, object> parameters); 
     }
 }

@@ -37,6 +37,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Transactions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -55,6 +56,7 @@
     <Compile Include="Data\ActiveTransactionProviderArgs.cs" />
     <Compile Include="Data\IActiveTransactionProvider.cs" />
     <Compile Include="Domain\Entities\ISoftDelete.cs" />
+    <Compile Include="Extensions\EventHandlerExtensions.cs" />
     <Compile Include="Extensions\StringExtensions.cs" />
     <Compile Include="IGuidGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -90,7 +92,6 @@
   <ItemGroup>
     <Folder Include="Events\Bus\" />
     <Folder Include="Log\" />
-    <Folder Include="Uow\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Build.xml">

@@ -40,6 +40,8 @@ namespace Acon.Dapper.Data
 
         public IDbConnection GetActiveConnection(ActiveTransactionProviderArgs args)
         {
+            if (Session.Connection.State == ConnectionState.Closed)
+                Session.Connection.Close();
             return Session.Connection;
         }
 
